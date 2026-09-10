@@ -54,7 +54,7 @@ const allowedEmptyTextFiles = new Set([
 ]);
 
 /**
- * Get the kit type (react or vue) from the starter kit string.
+ * Get the kit type (react, svelte, or vue) from the starter kit string.
  * Returns null for livewire kits since they don't use placeholders.
  */
 function getKitType(starterKit) {
@@ -136,7 +136,7 @@ function restoreComposerVariant(content, kitType) {
         return content;
     }
 
-    // Replace the variant (react/vue) back with {{variant}} in the name field
+    // Replace the variant (react/svelte/vue) back with {{variant}} in the name field
     // Handles patterns like "laravel/react-starter-kit" or "laravel/blank-react-starter-kit"
     return content.replace(
         new RegExp(`"name":\\s*"(laravel/(?:blank-)?)${kitType}(-starter-kit)"`, 'g'),

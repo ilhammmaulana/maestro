@@ -70,7 +70,7 @@ Every starter kit has a `ci:check` composer script that validates the kit withou
 
 **Inertia kits** run: Vite+ formatting and linting via `npm run check`, framework type checking via `npm run types:check`, then `@test` (Pint + PHPUnit).
 
-**Livewire kits** run: `@test` (pint + PHPUnit) only.
+**Livewire kits** run: `@test` (Pint + PHPUnit) only.
 
 ### Fortify Feature Matrix
 
@@ -383,7 +383,7 @@ cd ..
 ## Important Rules
 
 1. **Where to edit**: If a `build/` folder exists at the project root **and** `composer kit:run` is running (dev server + file watcher), make changes in `build/` — the watcher syncs them back to `kits/`. If there is no `build/` folder or the watcher is not running, edit `kits/` directly. Always commit in `kits/` regardless.
-2. **Follow sibling patterns**: When creating a Svelte file, check the React and Vue equivalents for expected structure and behavior and vice-versa.
+2. **Follow sibling patterns**: When creating a Svelte file, check the React and Vue equivalents for expected structure and behavior and vice versa.
 3. **Layer awareness**: Know which layer a file belongs to. Shared files affect all kits. Framework-specific files only affect that framework. Teams layers sit on top of auth layers — place team-specific code in the appropriate `Teams/` directory.
 4. **Placeholder awareness**: Files in `kits/` contain `{{placeholders}}`. Files in `build/` have resolved values. The watcher handles conversion.
 5. **Lint/check while watcher is stopped**: `kits:lint` and `kits:check` both delete and rebuild `build/` for each variant. If `kit:run` is active, the watcher interprets those deletions as file removals and propagates them to `kits/`, corrupting the source. Always stop `kit:run` before running `kits:lint` or `kits:check`. `kits:pint` is safe to run at any time — it operates directly on `kits/` and never touches `build/`.
